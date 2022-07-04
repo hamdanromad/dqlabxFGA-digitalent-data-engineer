@@ -82,8 +82,8 @@ df_load['tenure'].fillna(11, inplace=True)
 #Handling missing values num vars (except Tenure)
 for col_name in list(['MonthlyCharges', 'TotalCharges']):
     #write your command here
-	median = df_load[col_name].median()
-	df_load[col_name].fillna(median, inplace=True)
+    median = df_load[col_name].median()
+    df_load[col_name].fillna(median, inplace=True)
 	
 print('\nJumlah Missing Values setelah di imputer datanya, adalah:')
 print(df_load.isnull().sum().sort_values(ascending=False))
@@ -158,8 +158,8 @@ for col_name in list([
   'Churn'
 ]
 ):
-	print('\nUnique Values Count \033[1m' + 'Before Standardized \033[0m Variable', col_name)
-	print(df_load[col_name].value_counts())
+    print('\nUnique Values Count \033[1m' + 'Before Standardized \033[0m Variable', col_name)
+    print(df_load[col_name].value_counts())
 
 """
 Menstandarisasi Variable Kategorik
@@ -171,5 +171,5 @@ df_load = df_load.replace(
 )
 #Loop
 for col_name in list(['gender', 'Dependents', 'Churn']):
-	print('\nUnique Values Count \033[1m' + 'After Standardized \033[0mVariable', col_name)
-	print(df_load[col_name].value_counts())
+   print('\nUnique Values Count \033[1m' + 'After Standardized \033[0mVariable', col_name)
+   print(df_load[col_name].value_counts())
