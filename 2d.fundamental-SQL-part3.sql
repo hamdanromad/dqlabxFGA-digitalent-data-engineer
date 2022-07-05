@@ -112,4 +112,67 @@ ON tr_penjualan.kode_produk = ms_produk.kode_produk;
 
 """ UNION """
 """
+Union dua tabel
 """
+select * from tabel_A
+union
+select * from tabel_B
+
+"""
+Union dengan klausa where
+"""
+select * from tabel_A
+where kode_pelanggan = 'dqlabcust03'
+union 
+select * from tabel_B
+where kode_pelanggan = 'dqlabcust03'
+
+"""
+Union dengan Conforming column
+"""
+select CustomerName, ContactName, City, PostalCode
+from Customers
+union
+select SupplierName, ContactName, City, PostalCode
+from Suppliers;
+
+"""
+Task INNER JOIN: Dalam database, terdapat tabel ms_pelanggan yang berisi data - data 
+pelanggan yang membeli produk dan tabel tr_penjualan yang berisi 
+data transaksi pembelian di suatu store.
+Suatu hari, departemen marketing & promotion meminta bantuan 
+untuk meng-query data-data pelanggan yang membeli produk 
+Kotak Pensil DQLab, Flashdisk DQLab 32 GB, 
+dan Sticky Notes DQLab 500 sheets.
+Buatlah query menggunakan tabel ms_pelanggan dan tr_penjualan 
+untuk mendapatkan data - data yang diminta oleh marketing 
+yaitu kode_pelanggan, nama_customer, alamat.
+NB: Gunakan SELECT DISTINCT untuk menghilangkan duplikasi, jika diperlukan.
+"""
+select distinct ms_pelanggan.kode_pelanggan, ms_pelanggan.nama_customer, ms_pelanggan.alamat
+
+from ms_pelanggan
+inner join tr_penjualan
+on ms_pelanggan.kode_pelanggan = tr_penjualan.kode_pelanggan
+
+where tr_penjualan.nama_produk = 'Kotak Pensil DQLab' 
+or tr_penjualan.nama_produk = 'Flashdisk DQLab 32 GB' 
+or tr_penjualan.nama_produk = 'Sticky Notes DQLab 500 sheets'
+
+"""
+Task UNION: Persiapkanlah data katalog mengenai mengenai nama - nama produk 
+yang akan dijual di suatu store. Data tersebut akan digunakan dalam meeting
+untuk mereview produk mana saja yang akan dilanjutkan 
+penjualannya dan mana yang tidak akan dilanjutkan.
+Siapkan hanya data produk dengan harga di bawah 100K untuk
+kode produk prod-1 sampai prod-5; dan dibawah 50K untuk kode 
+produk prod-6 sampai prod-10, tanpa mencantumkan kolom no_urut.
+"""
+select nama_produk, kode_produk, harga
+from ms_produk_1
+where harga < 100000
+union
+
+select nama_produk, kode_produk, harga
+from ms_produk_2
+where harga < 50000
